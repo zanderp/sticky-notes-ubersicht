@@ -1,0 +1,11 @@
+﻿
+#divStickyNotesContainer{
+	position:absolute;
+	top:0;
+	left:0;
+	padding:0px;
+	margin:0px;
+	height:400px;
+	width:400px;
+	border: 1px solid white;
+}
