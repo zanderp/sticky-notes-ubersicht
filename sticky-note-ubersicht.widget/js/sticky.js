@@ -84,10 +84,6 @@ if(typeof(Storage)!=="undefined") {
 	        script.type = 'text/javascript';
 	        document.getElementsByTagName("head")[0].appendChild(script);
 	    };
-	    // Load JS content
-	    loadJs('https://ajax.googleapis.com/ajax/libs/jquery/'+expectedVersion+'/jquery.min.js'); // Load the jquery script
-		//loadJs(PIAurl+'jquery.min.js');
-	    
 	    /**
 	     * Load the CSS
 	     */
@@ -108,81 +104,29 @@ if(typeof(Storage)!=="undefined") {
 	     * Necessary for the load of the ui and the plugins
 	     */
 	    var checkJqueryReady = function(callback) {
-	    	
-	    	//Check jquery library
-	        if (window.jQuery && $.fn.jquery == expectedVersion) {
-	        	//Called when jquery are loaded
+	   
 	        	$('#PIAloading').html('Jquery done ...');
 	            callback(jQuery);        
-	        } else {
-	        	//Recheck until library is loaded
-	        	window.setTimeout(function() { checkJqueryReady(callback); }, 100);
-	        }
 	    };
 	    /**
 	     * 2nd Check for all stuff
 	     */
 	    var checkReady = function(callback) {
 	    	
-	    	//Check jquery library again (not necessary)
-	        //if (window.jQuery && $.fn.jquery == expectedVersion) {
-	        	
-	        	var ok = false;
-	        	
-	        	//Check jquery UI
-	        	if($.ui && $.ui.version == expectedVersionUI) {
-	        		$('#PIAloading').html('Jquery UI done ...');
-	        		ok = true;
-	        	} else {
-	        		ok = false;
-	        	}
-	        	
-	        	//Check minicolors plugin
-	        	// if(ok && jQuery.isFunction(jQuery.fn.minicolors)){
-// 	        		$('#PIAloading').html('Jquery minicolors done ...');
-// 	        		ok = true;
-// 	        	} else {
-// 	        		ok = false;
-// 	        	}
-	        	
-	        	
-	        	//Check postit plugin
-	        	// if(ok && jQuery.isFunction(jQuery.fn.postitall)){
-// 	        		$('#PIAloading').html('Jquery postitall done ...');
-// 	        		ok = true;
-// 	        	} else {
-// 	        		ok = false;
-// 	        	}
-	        	
-	        	//Check if all stuff was loaded
-	        	if(ok) {
-	        		//Called when jquery and UI (the expected version) are loaded
 	        		$('#PIAloading').html('All plugins loaded ...');
-					//Google analytics
-					//loadtracking();
 	                callback(jQuery);
-	        	} else {
-	        		//Recheck until all stuff is loaded
-	                window.setTimeout(function() { checkReady(callback); }, 100);
-	            }
-	        
-	        //} else {
-	        
-	        	//Recheck until library is loaded
-	        	//window.setTimeout(function() { checkReady(callback); }, 100);
-	        
-	        //}
+	        	
 	    };
 	    // Jquery loaded ok
 	    checkJqueryReady(function($) {
 	    	
 	    	//Load Jquery UI
-	    	loadJs('https://ajax.googleapis.com/ajax/libs/jqueryui/'+expectedVersionUI+'/jquery-ui.min.js'); // Load the jquery ui
-	    	loadCss('https://ajax.googleapis.com/ajax/libs/jqueryui/'+expectedVersionUI+'/themes/base/minified/jquery-ui.min.css'); // Load the jquery ui
+	    	loadJs('js/jquery-ui.min.js'); // Load the jquery ui
+	    	loadCss('css/jquery-ui.min.css'); // Load the jquery ui
 	    	
 	    	//Load more stuff
-	    	//loadJs('js/jquery.minicolors.js'); // Load the jquery minicolors plugin
-	    	//loadCss('css/jquery.minicolors.css'); // Load the jquery ui
+	    	loadJs('js/jquery.minicolors.js'); // Load the jquery minicolors plugin
+	    	loadCss('css/jquery.minicolors.css'); // Load the jquery ui
 	    	
 	    	loadJs('js/jquery.postitall.js?'+Math.floor((Math.random()*1000000)+1)); // Load the jquery minicolors plugin
 	    	loadCss('css/jquery.postitall.css?'+Math.floor((Math.random()*1000000)+1)); // Load the jquery ui
@@ -213,7 +157,7 @@ if(typeof(Storage)!=="undefined") {
 						
 						// Create the "Add postit" Button
 						var addPostIt = '<div id="idAddPostItButton">';
-						addPostIt += '<a href="#" id="id_addPostIt">Add Postit</a>';
+						addPostIt += '<a href="#" id="id_addPostIt">Add Sticky Note</a>';
 						addPostIt += '</div>';
 						$('body').append(addPostIt);
 						
@@ -240,7 +184,7 @@ if(typeof(Storage)!=="undefined") {
 							}
 							$('#PostItAll').postitall({
 								'position': 'absolute',
-								'posX': e.pageY - 100,
+								'posX': e.pageY + 100,
 								'posY': e.pageX + 50,
 								'width': 200,
 								'height': tempheight,

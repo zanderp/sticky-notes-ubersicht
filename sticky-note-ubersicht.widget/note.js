@@ -2,7 +2,7 @@ command:"",
 refreshFrequency: false,
 render: function(){
 
-	$('head').append('<link rel="stylesheet" href="css/StickyNoteDemo.css"><link rel="stylesheet" href="css/jquery.postitall.css"><script src="js/jquery.postitall.js"></script><script src="js/sticky.js"></script>');
+	$('head').append('<link rel="stylesheet" href="css/StickyNoteDemo.css"><script src="js/jquery.postitall.js"></script><script src="js/sticky.js"></script>');
 	return "";
 	
 },
